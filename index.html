@@ -16,30 +16,34 @@
          name="description"
          content="aplicatie creata pentru usurarea invatarii proprietatilor functiilor trigonometrice inverse"
       />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap"
+         rel="stylesheet"
+      />
    </head>
    <body>
-      <strong>
-         Toate raspunsurile sunt afisate in consola browserului, momentan :)
-      </strong>
-      <hr />
       <h1>Scrieti monotonia functiei arcsin</h1>
+      <main>
+         <form>
+            <legend>
+               Pentru pi scri pi <br />
+               toate datele sunt din tabelul trimis
+            </legend>
+            <input type="text" id="raspuns" />
+            <input type="submit" value="Verifica" />
+            <input type="button" value="Arata raspunsul" id="arata-raspunsul" />
+            <input
+               onclick="window.location.reload()"
+               type="button"
+               id="intrebare-noua"
+               value="Intrebare noua"
+            />
 
-      <form>
-         <legend for="raspuns">
-            Pentru pi scri pi <br />
-            toate datele sunt din tabelul trimis
-         </legend>
-         <br />
-         <input type="text" id="raspuns" />
-         <input type="submit" value="Verifica" />
-         <input type="button" value="Arata raspunsul" id="arata-raspunsul" />
-         <input
-            onclick="window.location.reload()"
-            type="button"
-            id="intrebare-noua"
-            value="Intrebare noua"
-         />
-      </form>
+            <p id="rezultat"></p>
+            <p id="container-raspuns"></p>
+         </form>
+      </main>
    </body>
    <script src="main.js"></script>
 </html>

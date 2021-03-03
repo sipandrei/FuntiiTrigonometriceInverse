@@ -56,10 +56,18 @@ arataRaspuns.addEventListener("click", aratareRaspuns);
 
 function verificareRaspuns(e) {
    e.preventDefault();
-   if (raspuns.value == proprietateAleasa[1]) console.log("Adevarat");
-   else console.log("Gresit!");
+   const rezultat = document.querySelector("#rezultat");
+   if (raspuns.value == proprietateAleasa[1]) {
+      console.log("Adevarat");
+      rezultat.textContent = "Adevarat!";
+   } else {
+      console.log("Gresit!");
+      rezultat.textContent = "Gresit!";
+   }
    raspuns.value = "";
 }
 function aratareRaspuns() {
+   const containerRaspuns = document.querySelector("#container-raspuns");
    console.log(proprietateAleasa[0] + " : " + proprietateAleasa[1]);
+   containerRaspuns.textContent = `Raspunsul corect pentru "${proprietateAleasa[0]}" este : ${proprietateAleasa[1]}`;
 }
