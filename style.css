@@ -19,6 +19,8 @@ legend {
 }
 input[type="text"] {
    display: block;
+   margin-left: auto;
+   margin-right: auto;
    width: 56vw;
 }
 p {
