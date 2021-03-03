@@ -19,7 +19,7 @@ function alegeProprietate(obj) {
 const arctg = new creareFunctie(
    "arctg",
    "reale",
-   "(-pi/2; pi/2)",
+   "(-pi/2;pi/2)",
    "crescatoare",
    "impara"
 );
