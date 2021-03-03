@@ -6,14 +6,39 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Functii Trigonometrice Inverse</title>
       <link rel="stylesheet" href="style.css" />
+      <link
+         rel="shortcut icon"
+         href="https://media.istockphoto.com/vectors/square-root-icon-vector-id652663834?k=6&m=652663834&s=612x612&w=0&h=LaLW8RgKb1UgcMRnOIH3jPUGOstjZBttL-YDprtWqDc="
+         type="image/x-icon"
+      />
+      <meta name="author" content="sipandrei" />
+      <meta
+         name="description"
+         content="aplicatie creata pentru usurarea invatarii proprietatilor functiilor trigonometrice inverse"
+      />
    </head>
    <body>
+      <strong>
+         Toate raspunsurile sunt afisate in consola browserului, momentan :)
+      </strong>
+      <hr />
       <h1>Scrieti monotonia functiei arcsin</h1>
+
       <form>
-         <legend for="raspuns">Pentru pi scri pi</legend>
+         <legend for="raspuns">
+            Pentru pi scri pi <br />
+            toate datele sunt din tabelul trimis
+         </legend>
          <br />
          <input type="text" id="raspuns" />
          <input type="submit" value="Verifica" />
+         <input type="button" value="Arata raspunsul" id="arata-raspunsul" />
+         <input
+            onclick="window.location.reload()"
+            type="button"
+            id="intrebare-noua"
+            value="Intrebare noua"
+         />
       </form>
    </body>
    <script src="main.js"></script>
