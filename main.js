@@ -1,5 +1,21 @@
-const form = document.querySelector("form");
-const comanda = document.querySelector("h1");
+//tema intunecata
+const html = document.querySelector("html");
+const darkModeButton = document.querySelector("#darkMode");
+html.dataset.theme = "theme-light";
+
+function schimbaTema() {
+   if (html.dataset.theme == "theme-light") {
+      html.dataset.theme = "theme-dark";
+      darkModeButton.src = "/img/sun.svg";
+   } else {
+      html.dataset.theme = "theme-light";
+      darkModeButton.src = "/img/moon.svg";
+   }
+}
+
+//procesare formulare
+const form = document.querySelector(".formularRaspuns");
+const comanda = document.querySelector(".comanda");
 const raspuns = document.querySelector("#raspuns");
 const arataRaspuns = document.querySelector("#arata-raspunsul");
 

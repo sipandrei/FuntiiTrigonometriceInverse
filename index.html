@@ -4,7 +4,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Functii Trigonometrice Inverse</title>
+      <title>TFLR</title>
       <link rel="stylesheet" href="style.css" />
       <link
          rel="shortcut icon"
@@ -12,38 +12,87 @@
          type="image/x-icon"
       />
       <meta name="author" content="sipandrei" />
-      <meta
-         name="description"
-         content="aplicatie creata pentru usurarea invatarii proprietatilor functiilor trigonometrice inverse"
-      />
+      <meta name="description" content="teste facute la repezeala" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
-         href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap"
+         href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap"
          rel="stylesheet"
       />
    </head>
    <body>
-      <h1>Scrieti monotonia functiei arcsin</h1>
-      <main>
-         <form>
-            <legend>
-               Pentru pi scrii pi <br />
-               toate datele sunt din tabelul trimis
-            </legend>
-            <input type="text" id="raspuns" autocomplete="off" />
-            <input type="submit" value="Verifica" />
-            <input type="button" value="Arata raspunsul" id="arata-raspunsul" />
-            <input
-               onclick="window.location.reload()"
-               type="button"
-               id="intrebare-noua"
-               value="Intrebare noua"
-            />
+      <h1>TFLR - teste facute la repezeala</h1>
 
-            <p id="rezultat"></p>
-            <p id="container-raspuns"></p>
-         </form>
+      <main>
+         <div id="alegereSetIntrebari">
+            <p>Alege setul de intrebari</p>
+            <form>
+               <input type="radio" name="set" id="og" />
+               <label for="og">Original - functii trigonometrice inverse</label
+               ><br />
+               <input type="radio" name="set" id="nou" />
+               <label for="nou">Creeaza un test nou</label><br />
+               <input type="submit" value="Trimite" />
+               <input type="button" value="Editeaza" id="editeaza" />
+            </form>
+            <div id="listaEditare" style="display: none"></div>
+         </div>
+         <div id="setNou">
+            <ol></ol>
+            <form>
+               <label for="numeNou">Nume:</label
+               ><input type="text" name="numeNou" id="numeNou" required />
+               <label for="intrebareNoua">Intrebare:</label>
+               <input
+                  type="text"
+                  name="intrebareNoua"
+                  id="intrebareNoua"
+                  required
+               />
+               <label for="raspunsNou">Raspuns:</label>
+               <input type="text" name="raspunsNou" id="raspunsNou" required />
+               <div>
+                  <input type="button" value="Adauga intrebare" />
+                  <input type="submit" value="Salveaza" />
+               </div>
+            </form>
+         </div>
+         <div id="raspunsuri">
+            <form class="formularRaspuns">
+               <p class="comanda">Scrieti monotonia functiei arcsin</p>
+               <input
+                  type="text"
+                  id="raspuns"
+                  autocomplete="off"
+                  required
+               /><br />
+               <input type="submit" value="Verifica" />
+               <input
+                  type="button"
+                  value="Arata raspunsul"
+                  id="arata-raspunsul"
+               />
+               <!--TODO: de adaugat vector cu intrebari - raspuns!-->
+               <input
+                  onclick=""
+                  type="button"
+                  id="intrebareaUrmatoare"
+                  value="Intrebarea urmatoare"
+               />
+
+               <p id="rezultat"></p>
+               <p id="container-raspuns"></p>
+            </form>
+            <table class="rezultate" style="display: none"></table>
+         </div>
       </main>
+      <img
+         id="darkMode"
+         onclick="schimbaTema()"
+         src="img/moon.svg"
+         alt="schimba tema de culori"
+         width="30px"
+         height="30px"
+      />
    </body>
    <script src="main.js"></script>
 </html>

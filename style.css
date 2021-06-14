@@ -1,8 +1,20 @@
-:root {
+:root[data-theme="theme-light"] {
    font-family: "Quicksand", sans-serif;
+   --page-background: hsl(10, 100%, 93%);
+   --button-color: hsl(10, 100%, 97%);
+   --text-color: black;
+   --input-background: white;
+}
+:root[data-theme="theme-dark"] {
+   font-family: "Quicksand", sans-serif;
+   --page-background: hsl(0, 0%, 10%);
+   --button-color: hsl(0, 0%, 60%);
+   --text-color: hsl(0, 0%, 81%);
+   --input-background: hsl(0, 0%, 29%);
 }
 body {
-   background-image: radial-gradient(#ffffff 0%, #c8c8c8);
+   background-color: var(--page-background);
+   color: var(--text-color);
 }
 h1 {
    text-align: center;
@@ -18,10 +30,11 @@ legend {
    font-size: smaller;
 }
 input[type="text"] {
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
-   width: 56vw;
+   display: inline-block;
+   width: 30vw;
+   margin-left: 10px;
+   background: var(--input-background);
+   color: var(--text-color);
 }
 p {
    font-size: 18px;
@@ -30,19 +43,7 @@ input[type="submit"],
 input[type="button"] {
    cursor: pointer;
    font-size: 15px;
-   color: rgb(46, 46, 46);
-   background-color: #dcd9d4;
-   background-image: linear-gradient(
-         to bottom,
-         rgba(255, 255, 255, 0.5) 0%,
-         rgba(0, 0, 0, 0.5) 100%
-      ),
-      radial-gradient(
-         at 50% 0%,
-         rgba(255, 255, 255, 0.1) 0%,
-         rgba(0, 0, 0, 0.5) 50%
-      );
-   background-blend-mode: soft-light, screen;
+   background-color: var(--button-color);
 }
 
 input {
@@ -51,5 +52,18 @@ input {
    padding: 0.7rem;
    border: transparent;
    border-radius: 9999px;
-   box-shadow: 0 0 5px 2px rgba(165, 165, 165, 0.808);
+   box-shadow: 0 0 5px 0px rgba(165, 165, 165, 0.808);
+}
+#darkMode {
+   bottom: 20px;
+   right: 20px;
+   position: fixed;
+   z-index: 1000;
+   border: none;
+   background: none;
+   cursor: pointer;
+}
+#setNou form {
+   display: flex;
+   flex-direction: column;
 }
