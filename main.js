@@ -2,15 +2,19 @@
 const html = document.querySelector("html");
 const darkModeButton = document.querySelector("#darkMode");
 html.dataset.theme = "theme-light";
+html.dataset.theme = localStorage.getItem("theme");
+darkModeButton.src = localStorage.getItem("theme-icon");
 
 function schimbaTema() {
    if (html.dataset.theme == "theme-light") {
-      html.dataset.theme = "theme-dark";
-      darkModeButton.src = "img/sun.svg";
+      localStorage.setItem("theme", "theme-dark");
+      localStorage.setItem("theme-icon", "img/sun.svg");
    } else {
-      html.dataset.theme = "theme-light";
-      darkModeButton.src = "img/moon.svg";
+      localStorage.setItem("theme", "theme-light");
+      localStorage.setItem("theme-icon", "img/moon.svg");
    }
+   html.dataset.theme = localStorage.getItem("theme");
+   darkModeButton.src = localStorage.getItem("theme-icon");
 }
 
 //procesare formulare

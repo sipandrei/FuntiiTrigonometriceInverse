@@ -47,12 +47,11 @@ input[type="button"] {
 }
 
 input {
-   margin-top: 3vh;
-   margin-left: 1vw;
+   margin: 1vh 0.5vw;
    padding: 0.7rem;
    border: transparent;
    border-radius: 9999px;
-   box-shadow: 0 0 5px 0px rgba(165, 165, 165, 0.808);
+   box-shadow: 0 0 4px 0px hsla(0, 0%, 70%, 0.808);
 }
 #darkMode {
    bottom: 20px;
