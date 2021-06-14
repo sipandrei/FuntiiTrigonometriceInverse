@@ -6,10 +6,10 @@ html.dataset.theme = "theme-light";
 function schimbaTema() {
    if (html.dataset.theme == "theme-light") {
       html.dataset.theme = "theme-dark";
-      darkModeButton.src = "/img/sun.svg";
+      darkModeButton.src = "img/sun.svg";
    } else {
       html.dataset.theme = "theme-light";
-      darkModeButton.src = "/img/moon.svg";
+      darkModeButton.src = "img/moon.svg";
    }
 }
 
