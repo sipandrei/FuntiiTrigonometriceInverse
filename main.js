@@ -2,6 +2,7 @@
 const html = document.querySelector("html");
 const darkModeButton = document.querySelector("#darkMode");
 html.dataset.theme = "theme-light";
+darkModeButton.src = "img/moon.svg";
 html.dataset.theme = localStorage.getItem("theme");
 darkModeButton.src = localStorage.getItem("theme-icon");
 
