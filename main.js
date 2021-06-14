@@ -1,11 +1,17 @@
 //tema intunecata
 const html = document.querySelector("html");
 const darkModeButton = document.querySelector("#darkMode");
-html.dataset.theme = "theme-light";
-darkModeButton.src = "img/moon.svg";
-html.dataset.theme = localStorage.getItem("theme");
-darkModeButton.src = localStorage.getItem("theme-icon");
+defaultTheme();
 
+function defaultTheme() {
+   if (localStorage.getItem("theme") == null) {
+      html.dataset.theme = "theme-light";
+      darkModeButton.src = "img/moon.svg";
+   } else {
+      html.dataset.theme = localStorage.getItem("theme");
+      darkModeButton.src = localStorage.getItem("theme-icon");
+   }
+}
 function schimbaTema() {
    if (html.dataset.theme == "theme-light") {
       localStorage.setItem("theme", "theme-dark");
