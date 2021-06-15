@@ -37,21 +37,20 @@
             <div id="listaEditare" style="display: none"></div>
          </div>
          <div id="setNou">
-            <ol></ol>
+            <ol id="coadaIntrebari"></ol>
             <form>
                <label for="numeNou">Nume:</label
                ><input type="text" name="numeNou" id="numeNou" required />
                <label for="intrebareNoua">Intrebare:</label>
-               <input
-                  type="text"
-                  name="intrebareNoua"
-                  id="intrebareNoua"
-                  required
-               />
+               <input type="text" name="intrebareNoua" id="intrebareNoua" />
                <label for="raspunsNou">Raspuns:</label>
-               <input type="text" name="raspunsNou" id="raspunsNou" required />
+               <input type="text" name="raspunsNou" id="raspunsNou" />
                <div>
-                  <input type="button" value="Adauga intrebare" />
+                  <input
+                     type="button"
+                     id="adaugareIntrebare"
+                     value="Adauga intrebare"
+                  />
                   <input type="submit" value="Salveaza" />
                </div>
             </form>

@@ -1,9 +1,10 @@
 :root[data-theme="theme-light"] {
    font-family: "Quicksand", sans-serif;
-   --page-background: hsl(10, 100%, 93%);
-   --button-color: hsl(10, 100%, 97%);
+   --page-background: hsl(10, 100%, 85%);
+   --button-color: hsl(10, 100%, 93%);
    --text-color: black;
    --input-background: white;
+   --hover-button: hsl(10, 100%, 97%);
 }
 :root[data-theme="theme-dark"] {
    font-family: "Quicksand", sans-serif;
@@ -11,6 +12,7 @@
    --button-color: hsl(0, 0%, 60%);
    --text-color: hsl(0, 0%, 81%);
    --input-background: hsl(0, 0%, 29%);
+   --hover-button: hsl(0, 0%, 70%);
 }
 body {
    background-color: var(--page-background);
@@ -44,6 +46,10 @@ input[type="button"] {
    cursor: pointer;
    font-size: 15px;
    background-color: var(--button-color);
+}
+input[type="submit"]:hover,
+input[type="button"]:hover {
+   background-color: var(--hover-button);
 }
 
 input {

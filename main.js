@@ -4,7 +4,7 @@ const darkModeButton = document.querySelector("#darkMode");
 defaultTheme();
 
 function defaultTheme() {
-   if (localStorage.getItem("theme") == null) {
+   if (localStorage.getItem("theme") === null) {
       html.dataset.theme = "theme-light";
       darkModeButton.src = "img/moon.svg";
    } else {
@@ -24,11 +24,27 @@ function schimbaTema() {
    darkModeButton.src = localStorage.getItem("theme-icon");
 }
 
-//procesare formulare
+// functii trigonometrice inverse
 const form = document.querySelector(".formularRaspuns");
 const comanda = document.querySelector(".comanda");
 const raspuns = document.querySelector("#raspuns");
 const arataRaspuns = document.querySelector("#arata-raspunsul");
+let teste = [];
+scoatereTeste();
+
+function scoatereTeste() {
+   if (localStorage.getItem("teste") != null)
+      JSON.parse(localStorage.getItem("teste"));
+}
+function setDate(nume, listaIntrebari) {
+   this.nume = nume;
+   this.listaIntrebari = listaIntrebari;
+}
+
+function intrebareRaspuns(intrebare, raspuns) {
+   this.intrebare = intrebare;
+   this.raspuns = raspuns;
+}
 
 function creareFunctie(nume, domeniu, codomeniu, monotonie, paritate) {
    this.nume = nume;
@@ -97,4 +113,57 @@ function aratareRaspuns() {
    const containerRaspuns = document.querySelector("#container-raspuns");
    console.log(proprietateAleasa[0] + " : " + proprietateAleasa[1]);
    containerRaspuns.textContent = `Raspunsul corect pentru "${proprietateAleasa[0]}" este : ${proprietateAleasa[1]}`;
+}
+
+// adaugare set nou de date
+const numeNou = document.querySelector("#numeNou");
+const intrebareNoua = document.querySelector("#intrebareNoua");
+const raspunsNou = document.querySelector("#raspunsNou");
+const adaugareIntrebare = document.querySelector("#adaugareIntrebare");
+const setNou = document.querySelector("#setNou");
+
+let intrebariDeAdaugat = [];
+
+adaugareIntrebare.addEventListener("click", aditieLaCoada);
+setNou.addEventListener("submit", terminareSetNou);
+
+function afisareCoadaIntrebari() {
+   const coadaIntrebari = document.querySelector("#coadaIntrebari");
+   let li = document.createElement("li");
+   const ultimIndex = intrebariDeAdaugat.length - 1;
+   let liContent = `${intrebariDeAdaugat[ultimIndex].intrebare} - ${intrebariDeAdaugat[ultimIndex].raspuns}`;
+   li.appendChild(document.createTextNode(liContent));
+   coadaIntrebari.appendChild(li);
+}
+
+function aditieLaCoada() {
+   let intrebareSetNou = intrebareNoua.value;
+   let raspunsSetNou = raspunsNou.value;
+   if (intrebareSetNou != "" && raspunsSetNou != "") {
+      let aux = new intrebareRaspuns(intrebareSetNou, raspunsSetNou);
+      intrebariDeAdaugat.push(aux);
+      intrebareNoua.value = "";
+      raspunsNou.value = "";
+      afisareCoadaIntrebari();
+   } else alert("Trebuie sa adaugati o intrebare si un raspuns");
+}
+
+function stergereListaCoada(lista) {
+   while (lista.hasChildNodes()) {
+      lista.firstChild.remove();
+   }
+}
+
+function terminareSetNou(e) {
+   e.preventDefault();
+   if (intrebareNoua.value != "") aditieLaCoada();
+   if (intrebariDeAdaugat.length) {
+      aux = new setDate(numeNou.value, intrebariDeAdaugat);
+      intrebariDeAdaugat = [];
+      teste.push(aux);
+      const coadaIntrebari = document.querySelector("#coadaIntrebari");
+      stergereListaCoada(coadaIntrebari);
+      localStorage.setItem("teste", JSON.stringify(teste));
+      numeNou.value = "";
+   } else alert("Nu se poate crea set de date fara intrebari");
 }
