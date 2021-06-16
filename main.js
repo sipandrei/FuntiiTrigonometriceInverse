@@ -63,8 +63,6 @@ function afisareSeturiIntrebari(test) {
    lista.insertBefore(document.createElement("br"), lista.querySelector("#og"));
 }
 
-// TODO procesare alegere set date
-
 // adaugare set nou de date
 const numeNou = document.querySelector("#numeNou");
 const intrebareNoua = document.querySelector("#intrebareNoua");
@@ -192,4 +190,35 @@ function aratareRaspuns() {
    const containerRaspuns = document.querySelector("#container-raspuns");
    console.log(proprietateAleasa[0] + " : " + proprietateAleasa[1]);
    containerRaspuns.textContent = `Raspunsul corect pentru "${proprietateAleasa[0]}" este : ${proprietateAleasa[1]}`;
+}
+
+// procesare alegere set date normal
+let listaActiva = [];
+
+alegereSetIntrebari.addEventListener("submit", alegereSetActiv);
+
+function alegereSetActiv(e) {
+   e.preventDefault();
+   const radioButtons = alegereSetIntrebari.querySelectorAll("input[name=set]");
+   let numeSetActiv, obiectActiv;
+   for (let i = 0; i < radioButtons.length; i++) {
+      const rb = radioButtons[i];
+      if (rb.checked) {
+         numeSetActiv = rb.id;
+         obiectActiv = teste[i];
+         break;
+      }
+   }
+   switch (numeSetActiv) {
+      case "og":
+         // listaActiva = listaOg; lista intrebari fct trig
+         break;
+      case "nou":
+         // de adaugat toggle pentru vizibilitate sectiuni
+         break;
+      default:
+         listaActiva = obiectActiv.listaIntrebari;
+         console.log(listaActiva);
+         break;
+   }
 }
