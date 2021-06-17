@@ -302,6 +302,7 @@ function alegereSetActiv(e) {
          break;
       default:
          listaActiva = obiectActiv.listaIntrebari;
+         toggle(2);
          break;
    }
 
