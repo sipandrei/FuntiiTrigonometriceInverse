@@ -1,6 +1,17 @@
 //tema intunecata
 const html = document.querySelector("html");
 const darkModeButton = document.querySelector("#darkMode");
+const numeNou = document.querySelector("#numeNou");
+const intrebareNoua = document.querySelector("#intrebareNoua");
+const raspunsNou = document.querySelector("#raspunsNou");
+const adaugareIntrebare = document.querySelector("#adaugareIntrebare");
+const setNou = document.querySelector("#setNou");
+const form = document.querySelector(".formularRaspuns");
+const comanda = document.querySelector(".comanda");
+const raspuns = document.querySelector("#raspuns");
+const arataRaspuns = document.querySelector("#arata-raspunsul");
+const intrebareaUrmatoare = document.querySelector("#intrebareaUrmatoare");
+
 defaultTheme();
 
 function defaultTheme() {
@@ -31,6 +42,7 @@ function scoatereTeste() {
    if (localStorage.getItem("teste") != null)
       teste = JSON.parse(localStorage.getItem("teste"));
 }
+
 function setDate(nume, listaIntrebari) {
    this.nume = nume;
    this.listaIntrebari = listaIntrebari;
@@ -39,6 +51,66 @@ function setDate(nume, listaIntrebari) {
 function intrebareRaspuns(intrebare, raspuns) {
    this.intrebare = intrebare;
    this.raspuns = raspuns;
+}
+
+function creareFunctie(nume, domeniu, codomeniu, monotonie, paritate) {
+   this.nume = nume;
+   this.domeniu = domeniu;
+   this.codomeniu = codomeniu;
+   this.monotonie = monotonie;
+   this.paritate = paritate;
+}
+// functii trigonometrice inverse
+
+const arctg = new creareFunctie(
+   "arctg",
+   "reale",
+   "(-pi/2;pi/2)",
+   "crescatoare",
+   "impara"
+);
+const arcctg = new creareFunctie(
+   "arcctg",
+   "reale",
+   "(0;pi)",
+   "descrescatoare",
+   "arcctg(-x)=pi-arcctg(x)"
+);
+const arcsin = new creareFunctie(
+   "arcsin",
+   "[-1;1]",
+   "[-pi/2;pi/2]",
+   "crescatoare",
+   "impara"
+);
+const arccos = new creareFunctie(
+   "arccos",
+   "[-1;1]",
+   "[0;pi]",
+   "descrescatoare",
+   "arccos(-x)=pi-arccos(x)"
+);
+
+function intrebariProprietate(obj, lista) {
+   let keys = Object.keys(obj);
+
+   keys.shift();
+   let q, a;
+   for (let i = 0; i < keys.length; i++) {
+      q = `Scrieti ce ${keys[i]} pentru functia ${obj.nume}`;
+      a = obj[keys[i]];
+      lista.push(new intrebareRaspuns(q, a));
+   }
+   return lista;
+}
+
+function listaOg() {
+   let og = [];
+   const variante = [arctg, arcctg, arcsin, arccos];
+   for (let i in variante) intrebariProprietate(variante[i], og);
+   /* let funtieAleatoare = variante[Math.floor(Math.random() * 4)];
+   let proprietateAleasa = intrebariProprietate(funtieAleatoare, aqaqaq); */
+   return og;
 }
 
 // afisare seturi de intrebari si alegere
@@ -64,11 +136,6 @@ function afisareSeturiIntrebari(test) {
 }
 
 // adaugare set nou de date
-const numeNou = document.querySelector("#numeNou");
-const intrebareNoua = document.querySelector("#intrebareNoua");
-const raspunsNou = document.querySelector("#raspunsNou");
-const adaugareIntrebare = document.querySelector("#adaugareIntrebare");
-const setNou = document.querySelector("#setNou");
 
 let intrebariDeAdaugat = [];
 
@@ -117,59 +184,38 @@ function terminareSetNou(e) {
    } else alert("Nu se poate crea set de date fara intrebari");
 }
 
-// functii trigonometrice inverse
-const form = document.querySelector(".formularRaspuns");
-const comanda = document.querySelector(".comanda");
-const raspuns = document.querySelector("#raspuns");
-const arataRaspuns = document.querySelector("#arata-raspunsul");
+// procesare alegere set date
+let listaActiva = [];
 
-function creareFunctie(nume, domeniu, codomeniu, monotonie, paritate) {
-   this.nume = nume;
-   this.domeniu = domeniu;
-   this.codomeniu = codomeniu;
-   this.monotonie = monotonie;
-   this.paritate = paritate;
+alegereSetIntrebari.addEventListener("submit", alegereSetActiv);
+
+function alegereSetActiv(e) {
+   e.preventDefault();
+   const radioButtons = alegereSetIntrebari.querySelectorAll("input[name=set]");
+   let numeSetActiv, obiectActiv;
+   for (let i = 0; i < radioButtons.length; i++) {
+      const rb = radioButtons[i];
+      if (rb.checked) {
+         numeSetActiv = rb.id;
+         obiectActiv = teste[i];
+         break;
+      }
+   }
+   switch (numeSetActiv) {
+      case "og":
+         listaActiva = listaOg();
+         break;
+      case "nou":
+         // de adaugat toggle pentru vizibilitate sectiuni
+         break;
+      default:
+         listaActiva = obiectActiv.listaIntrebari;
+         break;
+   }
+   console.log(listaActiva);
 }
-function alegeProprietate(obj) {
-   let keys = Object.keys(obj);
-   let proprietate = keys[Math.floor((keys.length - 1) * Math.random()) + 1];
-   return [proprietate, obj[proprietate]];
-}
 
-const arctg = new creareFunctie(
-   "arctg",
-   "reale",
-   "(-pi/2;pi/2)",
-   "crescatoare",
-   "impara"
-);
-const arcctg = new creareFunctie(
-   "arcctg",
-   "reale",
-   "(0;pi)",
-   "descrescatoare",
-   "arcctg(-x)=pi-arcctg(x)"
-);
-const arcsin = new creareFunctie(
-   "arcsin",
-   "[-1;1]",
-   "[-pi/2;pi/2]",
-   "crescatoare",
-   "impara"
-);
-const arccos = new creareFunctie(
-   "arccos",
-   "[-1;1]",
-   "[0;pi]",
-   "descrescatoare",
-   "arccos(-x)=pi-arccos(x)"
-);
-
-const variante = [arctg, arcctg, arcsin, arccos];
-let funtieAleatoare = variante[Math.floor(Math.random() * 4)];
-let proprietateAleasa = alegeProprietate(funtieAleatoare);
-
-comanda.innerText = `Scrieti ce ${proprietateAleasa[0]} are ${funtieAleatoare.nume}`;
+// verificare
 
 form.addEventListener("submit", verificareRaspuns);
 arataRaspuns.addEventListener("click", aratareRaspuns);
@@ -190,35 +236,4 @@ function aratareRaspuns() {
    const containerRaspuns = document.querySelector("#container-raspuns");
    console.log(proprietateAleasa[0] + " : " + proprietateAleasa[1]);
    containerRaspuns.textContent = `Raspunsul corect pentru "${proprietateAleasa[0]}" este : ${proprietateAleasa[1]}`;
-}
-
-// procesare alegere set date normal
-let listaActiva = [];
-
-alegereSetIntrebari.addEventListener("submit", alegereSetActiv);
-
-function alegereSetActiv(e) {
-   e.preventDefault();
-   const radioButtons = alegereSetIntrebari.querySelectorAll("input[name=set]");
-   let numeSetActiv, obiectActiv;
-   for (let i = 0; i < radioButtons.length; i++) {
-      const rb = radioButtons[i];
-      if (rb.checked) {
-         numeSetActiv = rb.id;
-         obiectActiv = teste[i];
-         break;
-      }
-   }
-   switch (numeSetActiv) {
-      case "og":
-         // listaActiva = listaOg; lista intrebari fct trig
-         break;
-      case "nou":
-         // de adaugat toggle pentru vizibilitate sectiuni
-         break;
-      default:
-         listaActiva = obiectActiv.listaIntrebari;
-         console.log(listaActiva);
-         break;
-   }
 }
