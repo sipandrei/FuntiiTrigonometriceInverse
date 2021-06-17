@@ -232,6 +232,36 @@ function afisareComanda(vectorIntrebari, index) {
    }`;
 }
 
+function gasireButonActiv() {
+   const radioButtons = alegereSetIntrebari.querySelectorAll("input[name=set]");
+   let numeSetActiv, obiectActiv;
+   for (let i = 0; i < radioButtons.length; i++) {
+      const rb = radioButtons[i];
+      if (rb.checked) {
+         numeSetActiv = rb.id;
+         obiectActiv = teste[i];
+         return [numeSetActiv, obiectActiv];
+      }
+   }
+}
+
+function eliminareIntrebare() {
+   let obiectActiv = gasireButonActiv()[1];
+   const lista = alegereSetIntrebari.querySelector("form");
+   for (let i = 0; i < teste.length; i++)
+      if (obiectActiv === teste[i]) {
+         teste.splice(i, 1);
+         localStorage.setItem("teste", JSON.stringify(teste));
+         lista.removeChild(lista.querySelectorAll("input[type='radio']")[i]);
+         lista.removeChild(lista.querySelectorAll("label")[i]);
+         lista.removeChild(lista.querySelectorAll("br")[i]);
+         break;
+      }
+   console.log(teste);
+}
+
+eliminaSetDate.addEventListener("click", eliminareIntrebare);
+
 let listaActiva = listaOg();
 let numarulIntrebarii = 0;
 let scor = 0;
@@ -241,16 +271,8 @@ alegereSetIntrebari.addEventListener("submit", alegereSetActiv);
 
 function alegereSetActiv(e) {
    e.preventDefault();
-   const radioButtons = alegereSetIntrebari.querySelectorAll("input[name=set]");
-   let numeSetActiv, obiectActiv;
-   for (let i = 0; i < radioButtons.length; i++) {
-      const rb = radioButtons[i];
-      if (rb.checked) {
-         numeSetActiv = rb.id;
-         obiectActiv = teste[i];
-         break;
-      }
-   }
+   let numeSetActiv = gasireButonActiv()[0];
+   let obiectActiv = gasireButonActiv()[1];
    switch (numeSetActiv) {
       case "og":
          listaActiva = listaOg();
