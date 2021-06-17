@@ -23,65 +23,87 @@
       <h1>TFLR - teste facute la repezeala</h1>
 
       <main>
-         <div id="alegereSetIntrebari">
-            <p>Alege setul de intrebari</p>
-            <form>
-               <input type="radio" name="set" id="og" />
-               <label for="og">Original - functii trigonometrice inverse</label
-               ><br />
-               <input type="radio" name="set" id="nou" />
-               <label for="nou">Creeaza un test nou</label><br />
-               <input type="submit" value="Trimite" />
-               <input type="button" value="Editeaza" id="editeaza" />
-            </form>
-            <div id="listaEditare" style="display: none"></div>
+         <div class="extindere">
+            <h2>Alege setul de intrebari</h2>
+            <div id="alegereSetIntrebari" class="deExtins ascuns">
+               <form>
+                  <input type="radio" name="set" id="og" />
+                  <label for="og"
+                     >Original - functii trigonometrice inverse</label
+                  ><br />
+                  <input type="radio" name="set" id="nou" />
+                  <label for="nou">Creeaza un set nou</label><br />
+                  <div>
+                     <input type="submit" value="Trimite" />
+                     <input
+                        type="button"
+                        value="Elimina set date"
+                        id="eliminaSetDate"
+                     />
+                  </div>
+               </form>
+               <div id="listaEditare" style="display: none"></div>
+            </div>
          </div>
-         <div id="setNou">
-            <ol id="coadaIntrebari"></ol>
-            <form>
-               <label for="numeNou">Nume:</label
-               ><input type="text" name="numeNou" id="numeNou" required />
-               <label for="intrebareNoua">Intrebare:</label>
-               <input type="text" name="intrebareNoua" id="intrebareNoua" />
-               <label for="raspunsNou">Raspuns:</label>
-               <input type="text" name="raspunsNou" id="raspunsNou" />
-               <div>
+         <div class="extindere">
+            <h2>Creeaza un set nou de intrebari</h2>
+            <div id="setNou" class="deExtins ascuns">
+               <ol id="coadaIntrebari"></ol>
+               <form>
+                  <label for="numeNou">Nume:</label><br /><input
+                     type="text"
+                     name="numeNou"
+                     id="numeNou"
+                     required
+                  /><br />
+                  <label for="intrebareNoua">Intrebare:</label><br />
+                  <input
+                     type="text"
+                     name="intrebareNoua"
+                     id="intrebareNoua"
+                  /><br />
+                  <label for="raspunsNou">Raspuns:</label><br />
+                  <input type="text" name="raspunsNou" id="raspunsNou" /><br />
+                  <div>
+                     <input
+                        type="button"
+                        id="adaugareIntrebare"
+                        value="Adauga intrebare"
+                     />
+                     <input type="submit" value="Salveaza" />
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div class="extindere">
+            <h2>Formular raspunsuri</h2>
+            <div id="raspunsuri" class="deExtins ascuns">
+               <form class="formularRaspuns">
+                  <p class="comanda">EROARE JS</p>
+                  <input
+                     type="text"
+                     id="raspuns"
+                     autocomplete="off"
+                     required
+                  /><br />
+                  <input type="submit" value="Verifica" />
                   <input
                      type="button"
-                     id="adaugareIntrebare"
-                     value="Adauga intrebare"
+                     value="Arata raspunsul"
+                     id="arata-raspunsul"
                   />
-                  <input type="submit" value="Salveaza" />
-               </div>
-            </form>
-         </div>
-         <div id="raspunsuri">
-            <form class="formularRaspuns">
-               <p class="comanda">Scrieti monotonia functiei arcsin</p>
-               <input
-                  type="text"
-                  id="raspuns"
-                  autocomplete="off"
-                  required
-               /><br />
-               <input type="submit" value="Verifica" />
-               <input
-                  type="button"
-                  value="Arata raspunsul"
-                  id="arata-raspunsul"
-               />
-               <!--TODO: de adaugat vector cu intrebari - raspuns!-->
-               <input
-                  onclick=""
-                  type="button"
-                  id="intrebareaUrmatoare"
-                  value="Intrebarea urmatoare"
-               />
+                  <input
+                     onclick=""
+                     type="button"
+                     id="intrebareaUrmatoare"
+                     value="Intrebarea Urmatoare"
+                  />
 
-               <p id="rezultat"></p>
-               <p id="container-raspuns"></p>
-            </form>
-            <table class="rezultate" style="display: none"></table>
+                  <p id="rezultat"></p>
+                  <p id="container-raspuns"></p>
+               </form>
+               <table class="rezultate" style="display: none"></table>
+            </div>
          </div>
       </main>
       <img

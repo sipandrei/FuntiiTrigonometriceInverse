@@ -11,6 +11,47 @@ const comanda = document.querySelector(".comanda");
 const raspuns = document.querySelector("#raspuns");
 const arataRaspuns = document.querySelector("#arata-raspunsul");
 const intrebareaUrmatoare = document.querySelector("#intrebareaUrmatoare");
+const toateFormularele = document.querySelectorAll("form");
+const rezultat = document.querySelector("#rezultat");
+const containerRaspuns = document.querySelector("#container-raspuns");
+const eliminaSetDate = document.querySelector("#eliminaSetDate");
+const extindere = document.querySelectorAll(".extindere");
+const deExtins = document.querySelectorAll(".deExtins");
+
+toateFormularele.forEach(prevenireReincarcare);
+
+for (let i = 0; i < extindere.length; i++) {
+   extindere[i].addEventListener("click", () => extinde(i));
+}
+for (let i = 0; i < deExtins.length; i++) {
+   deExtins[i].onclick = oprirePropagare;
+}
+
+function oprirePropagare(e) {
+   e.stopPropagation();
+}
+
+function extinde(x) {
+   if (deExtins[x].classList.contains("ascuns")) {
+      deExtins[x].classList.remove("ascuns");
+      if (deExtins[x].classList.contains("desc")) {
+         deExtins[x].style.display = "block";
+      }
+   } else {
+      deExtins[x].classList.add("ascuns");
+      if (deExtins[x].classList.contains("desc")) {
+         deExtins[x].style.display = "";
+      }
+   }
+}
+
+function prevenireReincarcare(e) {
+   e.addEventListener("submit", reloadNo);
+}
+
+function reloadNo(e) {
+   e.preventDefault();
+}
 
 defaultTheme();
 
@@ -185,7 +226,16 @@ function terminareSetNou(e) {
 }
 
 // procesare alegere set date
-let listaActiva = [];
+function afisareComanda(vectorIntrebari, index) {
+   comanda.innerText = `${index + 1}/${vectorIntrebari.length} - ${
+      vectorIntrebari[index].intrebare
+   }`;
+}
+
+let listaActiva = listaOg();
+let numarulIntrebarii = 0;
+let scor = 0;
+afisareComanda(listaActiva, numarulIntrebarii);
 
 alegereSetIntrebari.addEventListener("submit", alegereSetActiv);
 
@@ -212,28 +262,65 @@ function alegereSetActiv(e) {
          listaActiva = obiectActiv.listaIntrebari;
          break;
    }
-   console.log(listaActiva);
+
+   intrebareaUrmatoare.addEventListener("click", schimbareIntrebare);
+   scor = 0;
+   numarulIntrebarii = 0;
+   afisareComanda(listaActiva, numarulIntrebarii);
+   listaActiva.length == 1
+      ? (intrebareaUrmatoare.value = "Afisare Rezultate")
+      : (intrebareaUrmatoare.value = "Intrebarea Urmatoare");
 }
 
 // verificare
 
 form.addEventListener("submit", verificareRaspuns);
 arataRaspuns.addEventListener("click", aratareRaspuns);
+intrebareaUrmatoare.addEventListener("click", schimbareIntrebare);
+
+function schimbareIntrebare() {
+   if (numarulIntrebarii == listaActiva.length - 2) {
+      numarulIntrebarii += 1;
+      intrebareaUrmatoare.value = "Afisare Rezultate";
+      reinitializareIntrebare();
+   } else if (numarulIntrebarii < listaActiva.length - 1) {
+      numarulIntrebarii += 1;
+      intrebareaUrmatoare.value = "Intrebarea Urmatoare";
+      reinitializareIntrebare();
+   } else {
+      intrebareaUrmatoare.removeEventListener("click", schimbareIntrebare);
+      rezultat.textContent = `Ati raspuns corect la ${scor}/${listaActiva.length} intrebari!`;
+   }
+}
+
+function reinitializareIntrebare() {
+   afisareComanda(listaActiva, numarulIntrebarii);
+   form.addEventListener("submit", verificareRaspuns);
+   containerRaspuns.innerText = "";
+   rezultat.innerText = "";
+   raspuns.innerText = "";
+}
 
 function verificareRaspuns(e) {
    e.preventDefault();
-   const rezultat = document.querySelector("#rezultat");
-   if (raspuns.value == proprietateAleasa[1]) {
+   if (raspuns.value == listaActiva[numarulIntrebarii].raspuns) {
       console.log("Adevarat");
       rezultat.textContent = "Adevarat!";
+      scor += 1;
    } else {
       console.log("Gresit!");
       rezultat.textContent = "Gresit!";
    }
    raspuns.value = "";
+   form.removeEventListener("submit", verificareRaspuns);
 }
+
 function aratareRaspuns() {
-   const containerRaspuns = document.querySelector("#container-raspuns");
-   console.log(proprietateAleasa[0] + " : " + proprietateAleasa[1]);
-   containerRaspuns.textContent = `Raspunsul corect pentru "${proprietateAleasa[0]}" este : ${proprietateAleasa[1]}`;
+   const intr = listaActiva[numarulIntrebarii].intrebare;
+   const rsp = listaActiva[numarulIntrebarii].raspuns;
+
+   console.log(intr + " : " + rsp);
+   rezultat.textContent = "Butonul de verificare a fost dezactivat!";
+   containerRaspuns.textContent = `Raspunsul corect pentru intrebarea "${intr}" este : ${rsp}`;
+   form.removeEventListener("submit", verificareRaspuns);
 }

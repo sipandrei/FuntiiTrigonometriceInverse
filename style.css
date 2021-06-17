@@ -1,10 +1,11 @@
 :root[data-theme="theme-light"] {
    font-family: "Quicksand", sans-serif;
-   --page-background: hsl(10, 100%, 85%);
-   --button-color: hsl(10, 100%, 93%);
+   --page-background: hsl(10, 100%, 87%);
+   --button-color: hsl(10, 100%, 90%);
    --text-color: black;
    --input-background: white;
-   --hover-button: hsl(10, 100%, 97%);
+   --hover-button: hsl(10, 100%, 93%);
+   --culoare-contrast: hsl(99, 27%, 83%);
 }
 :root[data-theme="theme-dark"] {
    font-family: "Quicksand", sans-serif;
@@ -13,10 +14,12 @@
    --text-color: hsl(0, 0%, 81%);
    --input-background: hsl(0, 0%, 29%);
    --hover-button: hsl(0, 0%, 70%);
+   --culoare-contrast: hsl(0, 0%, 15%);
 }
 body {
    background-color: var(--page-background);
    color: var(--text-color);
+   font-size: 90%;
 }
 h1 {
    text-align: center;
@@ -24,9 +27,9 @@ h1 {
 main {
    text-align: center;
    display: grid;
-   place-items: center;
-   height: 90vh;
+   height: auto;
    user-select: none;
+   margin: 25vh 8vw;
 }
 legend {
    font-size: smaller;
@@ -37,6 +40,9 @@ input[type="text"] {
    margin-left: 10px;
    background: var(--input-background);
    color: var(--text-color);
+   min-width: 200px;
+   max-width: 500px;
+   text-align: center;
 }
 p {
    font-size: 18px;
@@ -57,7 +63,7 @@ input {
    padding: 0.7rem;
    border: transparent;
    border-radius: 9999px;
-   box-shadow: 0 0 4px 0px hsla(0, 0%, 70%, 0.808);
+   box-shadow: 0 0 4px 1px hsla(0, 0%, 70%, 0.808);
 }
 #darkMode {
    bottom: 20px;
@@ -68,7 +74,31 @@ input {
    background: none;
    cursor: pointer;
 }
-#setNou form {
-   display: flex;
-   flex-direction: column;
+#alegereSetIntrebari form {
+   text-align: justify;
+}
+#alegereSetIntrebari form div {
+   text-align: center;
+}
+label {
+   min-width: 100px;
+}
+.ascuns {
+   display: none;
+}
+.extindere {
+   background: var(--culoare-contrast);
+   width: 75vw;
+   max-width: 800px;
+   cursor: pointer;
+   padding: 2vw;
+   margin: 2vw;
+   border-radius: 75px;
+   box-shadow: 0 0 4px 1px hsla(0, 0%, 70%, 0.808);
+}
+#alegereSetIntrebari form label {
+   font-size: large;
+   display: inline-block;
+   width: 90%;
+   margin: 0.5vh auto;
 }
