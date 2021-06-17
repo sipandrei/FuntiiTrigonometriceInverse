@@ -1,19 +1,19 @@
 :root[data-theme="theme-light"] {
    font-family: "Quicksand", sans-serif;
-   --page-background: hsl(10, 100%, 87%);
-   --button-color: hsl(10, 100%, 90%);
+   --page-background: hsl(10, 100%, 85%);
+   --button-color: hsl(10, 100%, 92%);
    --text-color: black;
    --input-background: white;
-   --hover-button: hsl(10, 100%, 93%);
+   --hover-button: hsl(10, 100%, 96%);
    --culoare-contrast: hsl(99, 27%, 83%);
 }
 :root[data-theme="theme-dark"] {
    font-family: "Quicksand", sans-serif;
    --page-background: hsl(0, 0%, 10%);
-   --button-color: hsl(0, 0%, 60%);
+   --button-color: hsl(0, 0%, 17%);
    --text-color: hsl(0, 0%, 81%);
    --input-background: hsl(0, 0%, 29%);
-   --hover-button: hsl(0, 0%, 70%);
+   --hover-button: hsl(0, 0%, 30%);
    --culoare-contrast: hsl(0, 0%, 15%);
 }
 body {
@@ -50,11 +50,17 @@ input[type="submit"],
 input[type="button"] {
    cursor: pointer;
    font-size: 15px;
-   background-color: var(--button-color);
+   font-family: "Quicksand", sans-serif;
+   background-color: var(--page-background);
+   color: var(--text-color);
 }
 input[type="submit"]:hover,
 input[type="button"]:hover {
    background-color: var(--hover-button);
+}
+
+input[type="button"] {
+   background-color: var(--button-color);
 }
 
 input {
