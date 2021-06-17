@@ -31,9 +31,29 @@ function oprirePropagare(e) {
    e.stopPropagation();
 }
 
+function toggle(x) {
+   switch (x) {
+      case 0:
+         deExtins[0].classList.remove("ascuns");
+         deExtins[1].classList.add("ascuns");
+         deExtins[2].classList.add("ascuns");
+         break;
+      case 1:
+         deExtins[0].classList.add("ascuns");
+         deExtins[1].classList.remove("ascuns");
+         deExtins[2].classList.add("ascuns");
+         break;
+      case 2:
+         deExtins[1].classList.add("ascuns");
+         deExtins[0].classList.add("ascuns");
+         deExtins[2].classList.remove("ascuns");
+         break;
+   }
+}
+
 function extinde(x) {
    if (deExtins[x].classList.contains("ascuns")) {
-      deExtins[x].classList.remove("ascuns");
+      toggle(x);
       if (deExtins[x].classList.contains("desc")) {
          deExtins[x].style.display = "block";
       }
@@ -278,7 +298,7 @@ function alegereSetActiv(e) {
          listaActiva = listaOg();
          break;
       case "nou":
-         // de adaugat toggle pentru vizibilitate sectiuni
+         toggle(1);
          break;
       default:
          listaActiva = obiectActiv.listaIntrebari;
