@@ -296,6 +296,7 @@ function alegereSetActiv(e) {
    switch (numeSetActiv) {
       case "og":
          listaActiva = listaOg();
+         toggle(2);
          break;
       case "nou":
          toggle(1);
